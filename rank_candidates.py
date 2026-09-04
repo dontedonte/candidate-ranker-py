@@ -12,11 +12,18 @@ def main():
 
     parser.add_argument(
         "candidates",
-        nargs="+",
+        nargs="*",
         help='Candidates in the format "Name:Score"',
     )
 
     args = parser.parse_args()
+
+    if not args.candidates:
+        parser.error(
+            "No candidates provided.\n"
+            '  Provide at least one candidate in the format "Name:Score".\n'
+            '  Example: python3 rank_candidates.py "Alice Johnson:92"'
+        )
 
     candidates = []
 
